@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Reykjavík Apartment - apartment.hjalti.me</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .main-container {
+            background: #ffffff;
+            margin: 2rem auto;
+            max-width: 1200px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+            position: relative;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100"><path fill="rgba(255,255,255,0.1)" d="M0,50 Q250,0 500,50 T1000,50 V100 H0 Z"/></svg>');
+            background-size: cover;
+            background-position: bottom;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 3rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section h2 {
+            font-size: 2.2rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+        }
+
+        .about-text {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .amenities-grid li {
+            background: #f8f9fa;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            list-style: none;
+            transition: transform 0.2s ease;
+        }
+
+        .amenities-grid li:hover {
+            transform: translateX(5px);
+            background: #e3f2fd;
+        }
+
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2.5rem 0;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: white;
+            padding: 2rem 1rem 1rem;
+            font-size: 0.9rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        .section-description {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+            color: #666;
+            text-align: center;
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 3rem 0 0;
+            padding: 3rem 2rem;
+            border-radius: 0 0 20px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .contact-section h2 {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-section h2::after {
+            background: white;
+        }
+
+        .contact-info {
+            font-size: 1.2rem;
+            margin: 1.5rem 0;
+        }
+
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 2rem;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50px;
+            display: inline-block;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-info a:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .location-info {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .location-info h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .stat-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+            display: block;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .main-container {
+                margin: 0;
+                border-radius: 0;
+            }
+            
+            .image-gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .section h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <header>
+            <h1>Modern Reykjavík Apartment</h1>
+            <p>Your perfect home base for exploring Iceland</p>
+        </header>
+
+        <div class="container">
+            <section class="section fade-in">
+                <h2>About the Apartment</h2>
+                <div class="about-text">
+                    <p>This comfortable 65 m² apartment in Skyggnisbraut 6, 113 Reykjavik is perfect for two adults, with extra space for two children on air mattresses. Conveniently located near the ring road for easy access to Iceland's attractions, downtown Reykjavík is just a 15-minute drive away. The apartment provides free parking and is close to a newly built public swimming pool, perfect for relaxing after a day of exploring. You'll also find a nearby hiking area Úlfarsfell.</p>
+                    
+                    <p>The bright and airy living room focuses on comfort, offering a cozy sofa, large smart TV, and a dining table for four. It also comes with an efficient working desk and computer monitor. With a fully equipped oven, induction cook top, dishwasher, and more, the kitchen is complete. The large bedroom includes a comfortable king-size bed, with luxurious linens and ample closet storage. The bathroom is spacious, complete with a walk-in shower and a very handy washing machine/dryer. This would be a perfect apartment for a couple and two children, as an air mattress is provided to comfortably accommodate the little ones.</p>
+                </div>
+
+                <div class="location-info">
+                    <h3>Prime Location</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-number">15</span>
+                            <div class="stat-label">minutes to downtown</div>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">65</span>
+                            <div class="stat-label">m² living space</div>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">1</span>
+                            <div class="stat-label">Gbps internet</div>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">Free</span>
+                            <div class="stat-label">parking included</div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="text-align: center; margin: 2rem 0 1rem; color: #2c3e50;">What this place offers</h3>
+                <ul class="amenities-grid">
+                    <li>Free parking on premises</li>
+                    <li>1 Gbps internet speed</li>
+                    <li>Washer and dryer</li>
+                    <li>Heating system</li>
+                    <li>Smoke alarm</li>
+                    <li>Premium bed linens</li>
+                    <li>Cooking basics included</li>
+                    <li>Complete dishware set</li>
+                    <li>Refrigerator and freezer</li>
+                    <li>Dishwasher</li>
+                    <li>Single oven</li>
+                    <li>Induction stove</li>
+                    <li>Coffee maker</li>
+                    <li>Toaster</li>
+                    <li>Microwave</li>
+                </ul>
+            </section>
+
+            <section class="section fade-in">
+                <h2>Living Room & Kitchen</h2>
+                <p class="section-description">The open-plan living room is designed for comfort and relaxation, featuring a large, comfortable sofa and a TV for entertainment. Adjacent to it, the modern kitchen is fully equipped with all necessary appliances.</p>
+                <div class="image-gallery">
+                    <div class="gallery-item">
+                        <img src="images/living-room-1.jpg" alt="Living Room with sofa and TV">
+                        <div class="gallery-caption">Comfortable living area with modern furnishings</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/living-room-2.jpg" alt="Living Room with artwork and natural light">
+                        <div class="gallery-caption">Bright space with artwork and natural light</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/kitchen-dining-1.jpg" alt="Kitchen and dining area overview">
+                        <div class="gallery-caption">Fully equipped kitchen and dining area</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/kitchen-dining-2.jpg" alt="Modern kitchen appliances and counter space">
+                        <div class="gallery-caption">Modern appliances and ample counter space</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/kitchen-dining-3.jpg" alt="Dining table set up next to kitchen">
+                        <div class="gallery-caption">Dining area perfect for meals and work</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section fade-in">
+                <h2>Bedroom</h2>
+                <p class="section-description">Relax in the tranquil bedroom, featuring a comfortable king-size bed, ample wardrobe space, and a large window offering natural light and scenic views.</p>
+                <div class="image-gallery">
+                    <div class="gallery-item">
+                        <img src="images/bedroom-1.jpg" alt="Bedroom with large bed and window">
+                        <div class="gallery-caption">King-size bed with mountain views</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/bedroom-2.jpg" alt="Bedroom with wardrobe and full-length mirror">
+                        <div class="gallery-caption">Ample storage and wardrobe space</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section fade-in">
+                <h2>Bathroom & Laundry</h2>
+                <p class="section-description">The apartment includes a clean and modern bathroom with all essential facilities. A dedicated laundry area is also available with a washing machine and dryer for your convenience.</p>
+                <div class="image-gallery">
+                    <div class="gallery-item">
+                        <img src="images/bathroom-1.jpg" alt="Bathroom with sink and cabinet">
+                        <div class="gallery-caption">Modern bathroom with quality fixtures</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/bathroom-2.jpg" alt="Bathroom with toilet and shower area">
+                        <div class="gallery-caption">Spacious walk-in shower area</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/laundry-area.jpg" alt="Laundry area with washer and dryer">
+                        <div class="gallery-caption">In-unit washer and dryer for convenience</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section fade-in">
+                <h2>Exterior & Views</h2>
+                <p class="section-description">The apartment building is well-maintained, and the surrounding area offers pleasant views. Enjoy your private balcony for fresh air and scenic outlooks with ample parking available.</p>
+                <div class="image-gallery">
+                    <div class="gallery-item">
+                        <img src="images/building-exterior-1.jpg" alt="Exterior of the apartment building">
+                        <div class="gallery-caption">Modern apartment building exterior</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/building-exterior-2.jpg" alt="Another view of the apartment building and street">
+                        <div class="gallery-caption">Neighborhood street view</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/balcony-view-1.jpg" alt="View from the balcony">
+                        <div class="gallery-caption">Private balcony with scenic views</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/balcony-view-2.jpg" alt="Broader view from the apartment balcony">
+                        <div class="gallery-caption">Panoramic views from the apartment</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <section class="contact-section">
+            <h2>Contact Information</h2>
+            <p>Questions about the apartment or Iceland travel tips?</p>
+            <div class="contact-info">
+                <a href="mailto:hjalti@hjalti.me">hjalti@hjalti.me</a>
+            </div>
+            <p style="margin-top: 1rem; opacity: 0.9;">Usually respond within 24 hours</p>
+        </section>
+    </div>
+
+    <script>
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add hover effects for gallery items
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
